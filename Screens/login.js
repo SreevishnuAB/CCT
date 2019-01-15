@@ -18,34 +18,36 @@ export default class LoginScreen extends React.Component{
 	}
 
 	_sendRequest = ()=>{
-		axios.post("https://c-c-t.herokuapp.com/php/login.php",
-			{
-				username:this.state.user,
-				password:this.state.pwd
-			}
-		)
+		var self = this;
+		axios.post("https://c-c-t.herokuapp.com/php/loginaxios.php",
+		{
+			username:this.state.user,
+			password:this.state.pwd,
+		})
 		.then(function(response){
-			console.log(response);
+			if(response.data.status == 'true'){
+				DataStore.updateUser(self.state.user);
+				self.setState({user:'',pwd:'',verified:false});
+				self.props.navigation.navigate('Barcode');
+			}
+			else
+				alert('Invalid Credentials');
+	
 		})
 		.catch(function(error){
-			console.log(error);
+			alert(error);
 		});
+		//alert(typeof
 	}
 
-	_onLogin = () => {
+	_onLogin = async () => {
 //		TODO -- Axios backend comm implementation
 		if(this.state.user == '' || this.state.pwd == '')
 			alert("Username and password cannot be empty");
-		else /*if(this.state.verified)*/ {
-			this._sendRequest();
-			DataStore.updateUser(this.state.user);
-			this.setState({user:'',pwd:'',verified:false});
-			this.props.navigation.navigate('Barcode');
-		}
-//		else
-//			alert('Invalid Credentials')
-
+		else
+			await this._sendRequest();
 	}
+
 	render(){
 		return(
 			<View

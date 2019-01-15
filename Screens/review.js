@@ -5,6 +5,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import {TextField} from 'react-native-material-textfield';
 import DataStore from '../Store/datastore';
 import styles from '../CSS/styles';
+import axios from 'axios';
 
 @observer
 export default class ReviewScreen extends React.Component{
@@ -24,13 +25,34 @@ export default class ReviewScreen extends React.Component{
 
   _handleLogout = () => {
     /*TODO -- Session invalidate*/
-    alert("Logged out successfully");
-    this.props.navigation.navigate('Login');
+    var self = this;
+		axios.get("https://c-c-t.herokuapp.com/php/logout.php")
+		.then(function(response){
+      alert("Logged out successfully");
+      self.props.navigation.navigate('Login');
+		})
+		.catch(function(error){
+			alert(error);
+		});
   }
 
-  _handleSubmit = () => {
+  _handleSubmit = async() => {
     DataStore.updateCredits(this.state.credits)
     DataStore.updateEvent(this.state.event);
+    var self = this;
+		await axios.post("https://c-c-t.herokuapp.com/php/adddata.php",
+		{
+			user:DataStore.session.user,
+      id:DataStore.session.studentID,
+      credits:DataStore.session.credits,
+      event:DataStore.session.credits,
+		})
+		.then(function(response){
+      alert(response.data.status);
+			})
+		.catch(function(error){
+			alert(error);
+		});
     Alert.alert(
       "Scan or Logout?",
       "Scan another ID?",
