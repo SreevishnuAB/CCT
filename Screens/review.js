@@ -40,27 +40,28 @@ export default class ReviewScreen extends React.Component{
     DataStore.updateCredits(this.state.credits)
     DataStore.updateEvent(this.state.event);
     var self = this;
-		await axios.post("https://c-c-t.herokuapp.com/php/adddata.php",
+		axios.post("https://c-c-t.herokuapp.com/php/adddata.php",
 		{
 			user:DataStore.session.user,
       id:DataStore.session.studentID,
       credits:DataStore.session.credits,
-      event:DataStore.session.credits,
+      event:DataStore.session.event,
 		})
-		.then(function(response){
+		.then(await function(response){
       alert(response.data.status);
+      Alert.alert(
+        "Scan or Logout?",
+        "Scan another ID?",
+        [
+          {text:"Yes",onPress: ()=>{self._handleContinue()}},
+          {text:"Logout",onPress: ()=>{self._handleLogout()}}
+        ]
+      );
+  
 			})
 		.catch(function(error){
 			alert(error);
 		});
-    Alert.alert(
-      "Scan or Logout?",
-      "Scan another ID?",
-      [
-        {text:"Yes",onPress: ()=>{this._handleContinue()}},
-        {text:"Logout",onPress: ()=>{this._handleLogout()}}
-      ]
-    );
   }
 
   render(){

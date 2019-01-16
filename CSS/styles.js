@@ -4,7 +4,7 @@ import {widthPercentageToDP as wp , heightPercentageToDP as hp} from 'react-nati
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1c1c1c',
+    backgroundColor: '#001215',
 //    alignItems: 'center',
     justifyContent: 'flex-start',
     paddingTop:hp('7.50%'),
