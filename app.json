@@ -16,6 +16,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+	"android": {
+      "package": "com.cct.android"
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },

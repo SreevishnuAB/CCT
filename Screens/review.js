@@ -48,9 +48,9 @@ export default class ReviewScreen extends React.Component{
       event:DataStore.session.event,
 		})
 		.then(await function(response){
-      alert(response.data.status);
+//      alert(response.data.status);
       Alert.alert(
-        "Scan or Logout?",
+        response.data.status,
         "Scan another ID?",
         [
           {text:"Yes",onPress: ()=>{self._handleContinue()}},

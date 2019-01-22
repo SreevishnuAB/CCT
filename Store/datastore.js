@@ -2,7 +2,7 @@ import { observable, action, decorate} from 'mobx';
 
 class DataStore{
 
-  events = [{label:'Sports', value:'Sports'},{label:'Arts',value:'Arts'}];
+  events = [];
 
   session = {
     user:'',
@@ -10,6 +10,10 @@ class DataStore{
     event:'',
     credits:0
   };
+  updateEventsList(events){
+    for(var i=0;i<events.length;i++)
+      this.events[i] = {'label':events[i],'value':events[i]};
+  }
 
   updateUser(user){
     this.session.user = user;

@@ -17,6 +17,18 @@ export default class LoginScreen extends React.Component{
 		this.state = {user:'',pwd:'',verified:false};
 	}
 
+	_getEvents = ()=>{
+		var self = this;
+		axios.post("https://c-c-t.herokuapp.com/php/returnevents.php",)
+		.then(function(response){
+//			alert(response.data);
+			DataStore.updateEventsList(response.data);
+		})
+		.catch(function(error){
+			alert(error);
+		});
+	}
+
 	_sendRequest = ()=>{
 		var self = this;
 		axios.post("https://c-c-t.herokuapp.com/php/loginaxios.php",
@@ -26,6 +38,7 @@ export default class LoginScreen extends React.Component{
 		})
 		.then(function(response){
 			if(response.data.status == 'true'){
+				self._getEvents();
 				DataStore.updateUser(self.state.user);
 				self.setState({user:'',pwd:'',verified:false});
 				self.props.navigation.navigate('Barcode');
