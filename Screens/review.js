@@ -20,7 +20,7 @@ export default class ReviewScreen extends React.Component{
   }
 
   _handleContinue = () => {
-    this.props.navigation.navigate('Barcode');
+    this.props.navigation.navigate('InputID');
   }
 
   _handleLogout = () => {

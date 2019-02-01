@@ -1,16 +1,18 @@
 import React from 'react';
 import {createAppContainer,createStackNavigator} from 'react-navigation';
-import { Text, View } from 'react-native';
 import LoginScreen from './Screens/login';
 import EventScreen from './Screens/events';
 import BarcodeScanner from './Screens/barcodescanner'
 import CreditScreen from './Screens/credits';
 import ReviewScreen from './Screens/review';
-import styles from './CSS/styles';
+import IDScreen from './Screens/id';
+import StudentScreen from './Screens/student';
 
 const Nav = createStackNavigator({
     Login:LoginScreen,
+    InputID:StudentScreen,
     Barcode:BarcodeScanner,
+    ID:IDScreen,
     Event:EventScreen,
     Credit:CreditScreen,
     Review:ReviewScreen,

@@ -46,7 +46,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     paddingTop:hp('7.50%'),
     padding:wp('5%'),
-  }
+  },
+  icons: {
+    width:wp('50%'),
+    height:wp('50%')
+  },
+  iconContainer: {
+      flex: 1,
+      backgroundColor: '#001215',
+      alignItems: 'center',
+      justifyContent:'space-evenly',
+      padding:wp('5%'),
+    },
+    to: {
+      padding:wp('2%'),
+      borderRadius:5,
+      backgroundColor:'#0a6a7a',
+      alignItems:'center',
+      justifyContent:'center'
+    }
 });
 
 export default styles;

@@ -41,7 +41,7 @@ export default class LoginScreen extends React.Component{
 				self._getEvents();
 				DataStore.updateUser(self.state.user);
 				self.setState({user:'',pwd:'',verified:false});
-				self.props.navigation.navigate('Barcode');
+				self.props.navigation.navigate('InputID');
 			}
 			else
 				alert('Invalid Credentials');
